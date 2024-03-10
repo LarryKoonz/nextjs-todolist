@@ -48,12 +48,13 @@ const Task: React.FC<TaskProps> = ({ task }) => {
         {taskDone && (
           <RiCheckboxCircleFill
             size={25}
+            className="text-green-500"
             cursor="pointer"
             onClick={() => setTaskDone(false)}
           />
         )}
       </td>
-      <td className={`w-full ${taskDone ? "line-through" : ""}`}>
+      <td className={`w-full font-serif ${taskDone ? "line-through" : ""}`}>
         {task.text}
       </td>
       <td className="flex gap-5">
