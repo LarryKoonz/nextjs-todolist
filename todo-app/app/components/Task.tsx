@@ -6,6 +6,8 @@ import Modal from "./Modal";
 import { FormEventHandler, useState } from "react";
 import { useRouter } from "next/navigation";
 import { deleteTodo, editTodo } from "@/api";
+import { RiCheckboxBlankCircleLine } from "react-icons/ri";
+import { RiCheckboxCircleFill } from "react-icons/ri";
 
 interface TaskProps {
   task: ITask;
@@ -14,6 +16,7 @@ const Task: React.FC<TaskProps> = ({ task }) => {
   const [openModalEdit, setOpenModalEdit] = useState<boolean>(false);
   const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
   const [taskToEdit, setTaskToEdit] = useState<string>(task.text);
+  const [taskDone, setTaskDone] = useState<boolean>(false);
   const router = useRouter();
 
   const handleSubmitEditTodo: FormEventHandler<HTMLFormElement> = async (e) => {
@@ -34,7 +37,25 @@ const Task: React.FC<TaskProps> = ({ task }) => {
 
   return (
     <tr key={task.id}>
-      <td className="w-full">{task.text}</td>
+      <td>
+        {!taskDone && (
+          <RiCheckboxBlankCircleLine
+            size={25}
+            cursor="pointer"
+            onClick={() => setTaskDone(true)}
+          />
+        )}
+        {taskDone && (
+          <RiCheckboxCircleFill
+            size={25}
+            cursor="pointer"
+            onClick={() => setTaskDone(false)}
+          />
+        )}
+      </td>
+      <td className={`w-full ${taskDone ? "line-through" : ""}`}>
+        {task.text}
+      </td>
       <td className="flex gap-5">
         <FiEdit
           onClick={() => setOpenModalEdit(true)}
