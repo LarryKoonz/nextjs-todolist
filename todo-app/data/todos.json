@@ -1,24 +1,20 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "text": "Buy orange juice"
-    },
-    {
       "id": "2",
       "text": "Call to a friend"
     },
     {
       "id": "3",
-      "text": "go to gym "
-    },
-    {
-      "id": "4",
-      "text": "Fly to Scotland "
+      "text": "go to gym"
     },
     {
       "id": "a6baa72d-a595-443b-8e26-c9de3faa50d3",
       "text": "Do homework"
+    },
+    {
+      "id": "6ded5eff-084b-4784-89e1-f1bb81398e58",
+      "text": "meet Sharon on Sunday "
     }
   ]
 }
