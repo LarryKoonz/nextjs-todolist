@@ -5,7 +5,7 @@ import { FiTrash2 } from "react-icons/fi";
 import Modal from "./Modal";
 import { FormEventHandler, useState } from "react";
 import { useRouter } from "next/navigation";
-import { deleteTodo, editTodo } from "@/api";
+import { deleteTodo, editTodo } from "@/service";
 import { RiCheckboxBlankCircleLine } from "react-icons/ri";
 import { RiCheckboxCircleFill } from "react-icons/ri";
 
@@ -16,7 +16,6 @@ const Task: React.FC<TaskProps> = ({ task }) => {
   const [openModalEdit, setOpenModalEdit] = useState<boolean>(false);
   const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
   const [taskToEdit, setTaskToEdit] = useState<string>(task.text);
-  const [taskDone, setTaskDone] = useState<boolean>(false);
   const router = useRouter();
 
   const handleSubmitEditTodo: FormEventHandler<HTMLFormElement> = async (e) => {
@@ -24,6 +23,7 @@ const Task: React.FC<TaskProps> = ({ task }) => {
     await editTodo({
       id: task.id,
       text: taskToEdit,
+      isDone: task.isDone,
     });
     setOpenModalEdit(false);
     router.refresh();
@@ -35,26 +35,35 @@ const Task: React.FC<TaskProps> = ({ task }) => {
     router.refresh();
   };
 
+  const handleDoneTask = async (id: string) => {
+    await editTodo({
+      id: task.id,
+      text: taskToEdit,
+      isDone: !task.isDone,
+    });
+    router.refresh();
+  };
+
   return (
     <tr key={task.id}>
       <td>
-        {!taskDone && (
+        {!task.isDone && (
           <RiCheckboxBlankCircleLine
             size={25}
             cursor="pointer"
-            onClick={() => setTaskDone(true)}
+            onClick={() => handleDoneTask(task.id)}
           />
         )}
-        {taskDone && (
+        {task.isDone && (
           <RiCheckboxCircleFill
             size={25}
             className="text-green-500"
             cursor="pointer"
-            onClick={() => setTaskDone(false)}
+            onClick={() => handleDoneTask(task.id)}
           />
         )}
       </td>
-      <td className={`w-full font-serif ${taskDone ? "line-through" : ""}`}>
+      <td className={`w-full font-serif ${task.isDone ? "line-through" : ""}`}>
         {task.text}
       </td>
       <td className="flex gap-5">

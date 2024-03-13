@@ -1,4 +1,4 @@
-import { getAllTodos } from "@/api";
+import { getAllTodos } from "@/service";
 import AddTask from "./components/AddTask";
 import TodoList from "./components/TodoList";
 

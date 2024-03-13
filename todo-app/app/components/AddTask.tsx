@@ -2,7 +2,7 @@
 import { GoPlus } from "react-icons/go";
 import Modal from "./Modal";
 import { FormEventHandler, useState } from "react";
-import { addTodo } from "@/api";
+import { addTodo } from "@/service";
 import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 

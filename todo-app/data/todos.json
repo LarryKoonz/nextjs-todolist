@@ -2,15 +2,18 @@
   "tasks": [
     {
       "id": "2",
-      "text": "Call to a friend"
+      "text": "Call to a friend",
+      "isDone": false
     },
     {
       "id": "a6baa72d-a595-443b-8e26-c9de3faa50d3",
-      "text": "Do homework"
+      "text": "Create surface",
+      "isDone": false
     },
     {
       "id": "bde7cdf7-254d-42eb-bc29-719ece311af5",
-      "text": "Create a Todo app"
+      "text": "Create a Todo app",
+      "isDone": false
     }
   ]
 }
